@@ -5,7 +5,7 @@ on:
     branches: main
 
 permissions:
-  packages: write
+  packages: write|read
 
 jobs:
   push:
