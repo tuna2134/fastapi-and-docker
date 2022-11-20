@@ -18,9 +18,10 @@ jobs:
           registry: ghcr.io
           username: ${{ github.actor }}
           password: ${{ secrets.GITHUB_TOKEN }}
-      - name: Build image
-        run: |
-          docker build -t ghcr.io/$GITHUB_REPOSITORY .
-      - name: Push image
-        run: |
-          docker push ghcr.io/$GITHUB_REPOSITORY
+      - name: Build and push image
+        uses: docker/build-push-action@v3
+        with:
+          context: .
+          push: true
+          tags: |
+            ghcr.io/tuna2134/fastapi-and-docker
