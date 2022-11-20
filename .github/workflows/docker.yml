@@ -24,4 +24,4 @@ jobs:
           context: .
           push: true
           tags: |
-            ghcr.io/${{ github.repository }}
+            ghcr.io/${{ github.repository }}:lateset
