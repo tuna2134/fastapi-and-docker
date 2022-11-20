@@ -1,4 +1,4 @@
-from fastapi import FastAPI, HTTPException
+from fastapi import FastAPI, HTTPException, Request
 from fastapi.responses import HTMLResponse
 from fastapi.templating import Jinja2Templates
 
@@ -26,5 +26,5 @@ async def main():
     return parse("index.md")
 
 @app.get("/{file_path:path}", response_class=HTMLResponse)
-async def file(file_path: str):
-    return templates.TemplateResponse("base.html", {"content": parse("{}.md".format(file_path))})
+async def file(request: Request, file_path: str):
+    return templates.TemplateResponse("base.html", {"request": request, "content": parse("{}.md".format(file_path))})
