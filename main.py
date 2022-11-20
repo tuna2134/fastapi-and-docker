@@ -8,7 +8,8 @@ from os.path import exists
 
 
 app = FastAPI()
-templates = Jinja2Templates(directory="templates")
+with open("templates/base.html", "r") as f:
+    BASE_HTML = f.read()
 
 
 def parse(filename: str) -> str:
@@ -19,7 +20,7 @@ def parse(filename: str) -> str:
             detail="存在しないページへようこそ(?)"
         )
     with open(PATH, "r") as f:
-        return mizu.parse(f.read())
+        return BASE_HTML.format(content=mizu.parse(f.read()))
 
 @app.get("/", response_class=HTMLResponse)
 async def main():
@@ -27,4 +28,4 @@ async def main():
 
 @app.get("/{file_path:path}", response_class=HTMLResponse)
 async def file(request: Request, file_path: str):
-    return templates.TemplateResponse("base.html", {"request": request, "content": parse("{}.md".format(file_path))})
+    return parse("{}.md".format(file_path))
