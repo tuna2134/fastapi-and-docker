@@ -25,7 +25,7 @@ spec:
     metadata:
       labels:
         app: fastapi
-        generation: '2'
+        generation: '12'
     spec:
       containers:
       - name: fastapi
