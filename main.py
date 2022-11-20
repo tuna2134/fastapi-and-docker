@@ -1,5 +1,6 @@
 from fastapi import FastAPI, HTTPException
 from fastapi.responses import HTMLResponse
+from fastapi.templating import Jinja2Templates
 
 import mizu
 
@@ -7,6 +8,7 @@ from os.path import exists
 
 
 app = FastAPI()
+templates = Jinja2Templates(directory="templates")
 
 
 def parse(filename: str) -> str:
@@ -25,4 +27,4 @@ async def main():
 
 @app.get("/{file_path:path}", response_class=HTMLResponse)
 async def file(file_path: str):
-    return parse("{}.md".format(file_path))
+    return templates.TemplateResponse("base.html", content=parse("{}.md".format(file_path)))
