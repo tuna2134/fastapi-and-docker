@@ -16,7 +16,7 @@ jobs:
           password: ${{ secrets.GITHUB_TOKEN }}
       - name: Build image
         run: |
-          docker build ghcr.io/${{ GITHUB_REPOSITORY }} .
+          docker build ghcr.io/${{ env.GITHUB_REPOSITORY }} .
       - name: Push image
         run: |
-          docker push ghcr.io/${{ GITHUB_REPOSITORY }}
+          docker push ghcr.io/${{ env.GITHUB_REPOSITORY }}
