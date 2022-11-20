@@ -1,8 +1,16 @@
 from fastapi import FastAPI
+from fastapi.responses import HTMLResponse
+
+import mizu
 
 
 app = FastAPI()
 
-@app.get("/")
+
+def parse(filename: str) -> str:
+    with open("contents/{}".format(filename), "r") as f:
+        return mizu.parse(f.read())
+
+@app.get("/", response_class=HTMLResponse)
 async def main():
-    return "Hello, World!"
+    return HTMLResponse(parse("index.md"))
