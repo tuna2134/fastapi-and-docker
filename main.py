@@ -27,4 +27,4 @@ async def main():
 
 @app.get("/{file_path:path}", response_class=HTMLResponse)
 async def file(file_path: str):
-    return templates.TemplateResponse("base.html", content=parse("{}.md".format(file_path)))
+    return templates.TemplateResponse("base.html", {"content": parse("{}.md".format(file_path))})
