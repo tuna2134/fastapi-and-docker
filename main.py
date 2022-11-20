@@ -14,3 +14,7 @@ def parse(filename: str) -> str:
 @app.get("/", response_class=HTMLResponse)
 async def main():
     return HTMLResponse(parse("index.md"))
+
+@app.get("/{file_path:path}", response_class=HTMLRespons)
+async def file(file_path: str):
+    return HTMLResponse(parse("{}.md".format(file_path)))
