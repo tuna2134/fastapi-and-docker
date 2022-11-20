@@ -8,8 +8,8 @@ jobs:
   push:
     runs-on: ubuntu-latest
     permissions:
-      packages: write
       contents: read
+      packages: write
     steps:
       - uses: actions/checkout@v3
       - name: Login to GitHub Container Registry
