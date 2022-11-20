@@ -5,7 +5,7 @@ on:
     branches: main
 
 jobs:
-  push:
+  push-docker:
     runs-on: ubuntu-latest
     permissions:
       contents: read
