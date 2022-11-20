@@ -21,6 +21,7 @@ def parse(filename: str) -> str:
     with open(PATH, "r") as f:
         return BASE_HTML.format(content=mizu.parse(f.read()))
 
+
 @app.get("/", response_class=HTMLResponse)
 async def main():
     return parse("index.md")
