@@ -1,8 +1,8 @@
 name: Push to github container register
 
 on:
-  push:
-    branches: main
+  release:
+    types: [created]
 
 jobs:
   push-docker:
